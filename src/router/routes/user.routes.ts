@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
 import HomeView from '../../views/HomeView.vue'
+import auth from '@/router/middlewares/auth.middleware'
 
 export default function ():Array<RouteRecordRaw> {
   return [
@@ -12,12 +13,20 @@ export default function ():Array<RouteRecordRaw> {
       }
     },
     {
-      path: '/auth',
-      name: 'Auth',
+      path: '/login',
+      name: 'Login',
       meta: {
         layout: 'main'
       },
-      component: () => import('@/views/AuthView.vue')
+      component: () => import('@/views/LoginView.vue')
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      meta: {
+        layout: 'main'
+      },
+      component: () => import('@/views/RegisterView.vue')
     },
     {
       path: '/about',
@@ -26,6 +35,17 @@ export default function ():Array<RouteRecordRaw> {
         layout: 'main'
       },
       component: () => import('@/views/AboutView.vue')
+    },
+    {
+      path: '/bid/create',
+      name: 'CreateBid',
+      meta: {
+        layout: 'main',
+        middleware: [
+          auth
+        ]
+      },
+      component: () => import('@/views/CreateBidView.vue')
     },
     {
       path: '/bid/:id',
@@ -39,7 +59,10 @@ export default function ():Array<RouteRecordRaw> {
       path: '/profile',
       name: 'Profile',
       meta: {
-        layout: 'main'
+        layout: 'main',
+        middleware: [
+          auth
+        ]
       },
       component: () => import('@/views/ProfileView.vue')
     }

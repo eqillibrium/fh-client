@@ -1,4 +1,19 @@
 <template>
-  <h1>Main layout</h1>
-  <router-view></router-view>
+  <el-container>
+    <el-header>
+      <TheHeader />
+    </el-header>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
+    <el-footer>
+      Footer
+    </el-footer>
+  </el-container>
 </template>
+<script>
+import TheHeader from '@/components/main/header/TheHeader'
+export default {
+  components: { TheHeader }
+}
+</script>
